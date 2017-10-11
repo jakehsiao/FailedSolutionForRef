@@ -1,3 +1,5 @@
+import rospy
+
 
 MIN_NUM = float('-inf')
 MAX_NUM = float('inf')
@@ -25,6 +27,7 @@ class PID(object):
 
         y = self.kp * error + self.ki * self.int_val + self.kd * derivative;
         val = max(self.min, min(y, self.max))
+        rospy.loginfo("PID Info: time: %f, p i d: %f %f %f, y: %f"%(sample_time, error, integral, derivative, y))
 
         if val > self.max:
             val = self.max
